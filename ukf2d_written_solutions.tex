@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amsmath} % for math stuff
+\usepackage{graphicx} % for inserting graphics
+\usepackage{xcolor} % for text coloring
+
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{#1}}}
+
+\title{UKF with 2D State Vector}
+\author{\todo{Student name here}}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+
+\section{Design}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{State Vector}
+
+\begin{equation}
+  \mathbf{x}=\begin{bmatrix}
+  z \\
+  \dot z
+  \end{bmatrix}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Prediction Step}
+
+\subsubsection{Control Input}
+
+\begin{equation}
+  \mathbf{u} = \begin{bmatrix}
+  \ddot z
+  \end{bmatrix}
+\end{equation}
+
+\subsubsection{State Transition Function}
+
+\begin{equation}
+  g(\mathbf{x}, \mathbf{u}, \Delta t) = \begin{bmatrix}
+  \todo{?} & \todo{?} \\
+  \todo{?} & \todo{?}
+  \end{bmatrix}\mathbf{x} + \begin{bmatrix}
+  \todo{?} \\
+  \todo{?}
+  \end{bmatrix}\mathbf{u}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Measurement Update Step}
+
+\subsubsection{Measurement Vector}
+
+\begin{equation}
+  \mathbf{z}_t = \begin{bmatrix}
+  r
+  \end{bmatrix}
+\end{equation}
+
+\subsubsection{Measurement Function}
+
+\begin{equation}
+  h(\mathbf{\bar x}) = \begin{bmatrix}
+  \todo{?} & \todo{?}
+  \end{bmatrix}\mathbf{\bar x}
+\end{equation}
+
+\subsubsection{Measurement Covariance Matrix}
+
+Populate the measurement covariance matrix $\mathbf{R}$ with a reasonable value for the variance $\sigma^2_r$ of the range reading $r$.
+
+\begin{equation}
+  \mathbf{R} = \begin{bmatrix}
+  \todo{?}
+  \end{bmatrix}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Implementation}
+
+\end{document}
