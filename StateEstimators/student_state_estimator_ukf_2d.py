@@ -121,7 +121,7 @@ class UKFStateEstimator2D(object):
         self.ukf.P = np.diag([0.1, 0.2])
         
         # Initialize the process noise covariance matrix Q:
-        self.ukf.Q = np.diag([0.01, 1.0])*0.005
+        self.ukf.Q = np.diag([0.01, 1.0])*0.0005
         
         # TODO: Initialize the measurement covariance matrix R, containing IR
         #       range variance (units: m^2) determined experimentally in a
@@ -146,24 +146,20 @@ class UKFStateEstimator2D(object):
         """
         Handle the receipt of an Imu message. Only take the linear acceleration
         along the z-axis.
-        
-        This method PREDICTS with a control input.
         """
         if self.in_callback:
             return
         self.in_callback = True
         ##########################################
-        # TODO: Implement the prediction step upon receipt of a control input
-        #       from the IMU
+        # TODO: Implement this method to handle the control input from the IMU
         
         ##########################################
         self.in_callback = False
                         
     def ir_data_callback(self, data):
         """
-        Handle the receipt of a Range message from the IR sensor.
-        
-        This method PREDICTS with the most recent control input and UPDATES.
+        Handle the receipt of a Range message from the IR sensor, forming both a
+        PREDICTION and a MEASUREMENT UPDATE.
         """
         if self.in_callback:
             return

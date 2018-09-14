@@ -6,7 +6,7 @@
 
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{#1}}}
 
-\title{UKF with 2D State Vector}
+\title{UKF with 7D State Vector}
 \author{\todo{Student name here}}
 \date{\today}
 
@@ -21,10 +21,14 @@
 \subsection{State Vector}
 
 \begin{equation}
-  \mathbf{x}=\begin{bmatrix}
-  z \\
-  \dot z
-  \end{bmatrix}
+\mathbf{x} = \begin{bmatrix}
+x \\
+y \\
+z \\
+\dot x \\
+\dot y \\
+\dot z \\
+\psi \end{bmatrix}
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -32,22 +36,22 @@
 
 \subsubsection{Control Input}
 
+We define a control input $\mathbf{u}$ populated by linear accelerations from the IMU:
+
 \begin{equation}
-  \mathbf{u} = \begin{bmatrix}
-  \ddot z
-  \end{bmatrix}
+\mathbf{u} = \begin{bmatrix}
+\ddot x^b \\
+\ddot y^b \\
+\ddot z^b
+\end{bmatrix}
 \end{equation}
+
+The linear accelerations are in the drone's body frame, so we need to rotate these vectors into the global frame based on the yaw variable that we are tracking (we assume 0 degrees pitch and roll in this model). This transformation will occur in the state transition function.
 
 \subsubsection{State Transition Function}
 
 \begin{equation}
-  g(\mathbf{x}, \mathbf{u}, \Delta t) = \begin{bmatrix}
-  \todo{?} & \todo{?} \\
-  \todo{?} & \todo{?}
-  \end{bmatrix}\mathbf{x} + \begin{bmatrix}
-  \todo{?} \\
-  \todo{?}
-  \end{bmatrix}\mathbf{u}
+  g(\mathbf{x}, \mathbf{u}, \Delta t) = \todo{?}
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -56,27 +60,26 @@
 \subsubsection{Measurement Vector}
 
 \begin{equation}
-  \mathbf{z}_t = \begin{bmatrix}
-  r
-  \end{bmatrix}
+\mathbf{z}_t = \begin{bmatrix}
+r \\
+x \\
+y \\
+\dot x \\
+\dot y \\
+\psi_{\text{camera}}
+\end{bmatrix}
 \end{equation}
 
 \subsubsection{Measurement Function}
 
 \begin{equation}
-  h(\mathbf{\bar x}) = \begin{bmatrix}
-  \todo{?} & \todo{?}
-  \end{bmatrix}\mathbf{\bar x}
+  h(\mathbf{\bar x}) = \todo{?}
 \end{equation}
 
 \subsubsection{Measurement Covariance Matrix}
 
-Populate the measurement covariance matrix $\mathbf{R}$ with a reasonable value for the variance $\sigma^2_r$ of the range reading $r$.
-
 \begin{equation}
-  \mathbf{R} = \begin{bmatrix}
-  \todo{?}
-  \end{bmatrix}
+  \mathbf{R} = \todo{?}
 \end{equation}
 
 \noindent \todo{Your histogram image here}
