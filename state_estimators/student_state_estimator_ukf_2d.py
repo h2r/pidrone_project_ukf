@@ -28,10 +28,12 @@ class UKFStateEstimator2D(object):
     motion along one spatial dimension: the global frame z-axis. In this
     simplified case, we assume that the drone's body frame orientation is
     aligned with the world frame (i.e., no roll, pitch, or yaw), and that it is
-    only offset along the z-axis.
+    only offset along the z-axis. It is called a 2D UKF because we track two
+    state variables in the state vector: z position and z velocity.
     """
     
-    def __init__(self, ir_throttled=False, imu_throttled=False):
+    def __init__(self, loop_hz, ir_throttled=False, imu_throttled=False):
+        self.loop_hz = loop_hz
         self.ir_topic_str = '/pidrone/infrared'
         self.imu_topic_str = '/pidrone/imu'
         throttle_suffix = '_throttle'
@@ -146,6 +148,8 @@ class UKFStateEstimator2D(object):
         """
         Handle the receipt of an Imu message. Only take the linear acceleration
         along the z-axis.
+        
+        data : a ROS message
         """
         if self.in_callback:
             return
@@ -160,6 +164,8 @@ class UKFStateEstimator2D(object):
         """
         Handle the receipt of a Range message from the IR sensor, forming both a
         PREDICTION and a MEASUREMENT UPDATE.
+        
+        data : a ROS message
         """
         if self.in_callback:
             return
@@ -248,6 +254,16 @@ class UKFStateEstimator2D(object):
         pass
         
         
+def check_positive_float_duration(val):
+    """
+    Function to check that the --loop_hz command-line argument is a positive
+    float.
+    """
+    value = float(val)
+    if value <= 0.0:
+        raise argparse.ArgumentTypeError('Loop Hz must be positive')
+    return value
+        
 def main():
     parser = argparse.ArgumentParser(description=('Estimate the drone\'s state '
                                      'with a UKF in one spatial dimension'))
@@ -257,8 +273,13 @@ def main():
             help=('Use throttled infrared topic /pidrone/infrared_throttle'))
     parser.add_argument('--imu_throttled', action='store_true',
             help=('Use throttled IMU topic /pidrone/imu_throttle'))
+    parser.add_argument('--loop_hz', '-hz', default=30.0,
+                        type=check_positive_float_duration,
+                        help=('Frequency at which to run the predict-update '
+                              'loop of the UKF (default: 30)'))
     args = parser.parse_args()
-    se = UKFStateEstimator2D(ir_throttled=args.ir_throttled,
+    se = UKFStateEstimator2D(loop_hz=args.loop_hz,
+                             ir_throttled=args.ir_throttled,
                              imu_throttled=args.imu_throttled)
     try:
         # Wait until node is halted
