@@ -21,7 +21,7 @@
 \subsection{State Vector}
 
 \begin{equation}
-  \mathbf{x}=\todo{?}
+  \mathbf{x}_t=\todo{?}
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -30,7 +30,7 @@
 \subsubsection{Control Input}
 
 \begin{equation}
-  \mathbf{u} = \begin{bmatrix}
+  \mathbf{u}_t = \begin{bmatrix}
   \ddot y^b \\
   \psi
   \end{bmatrix}
@@ -39,7 +39,7 @@
 \subsubsection{State Transition Function}
 
 \begin{equation}
-  g(\mathbf{x}, \mathbf{u}, \Delta t) = \todo{?}
+  g(\mathbf{x}_{t-\Delta t}, \mathbf{u}_t, \Delta t) = \todo{?}
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -56,7 +56,7 @@
 \subsubsection{Measurement Function}
 
 \begin{equation}
-  h(\mathbf{\bar x}) = \todo{?}
+  h(\mathbf{\bar x}_t) = \todo{?}
 \end{equation}
 
 \end{document}

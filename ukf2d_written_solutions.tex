@@ -21,7 +21,7 @@
 \subsection{State Vector}
 
 \begin{equation}
-  \mathbf{x}=\begin{bmatrix}
+  \mathbf{x}_t=\begin{bmatrix}
   z \\
   \dot z
   \end{bmatrix}
@@ -33,7 +33,7 @@
 \subsubsection{Control Input}
 
 \begin{equation}
-  \mathbf{u} = \begin{bmatrix}
+  \mathbf{u}_t = \begin{bmatrix}
   \ddot z
   \end{bmatrix}
 \end{equation}
@@ -41,13 +41,13 @@
 \subsubsection{State Transition Function}
 
 \begin{equation}
-  g(\mathbf{x}, \mathbf{u}, \Delta t) = \begin{bmatrix}
+  g(\mathbf{x}_{t-\Delta t}, \mathbf{u}_t, \Delta t) = \begin{bmatrix}
   \todo{?} & \todo{?} \\
   \todo{?} & \todo{?}
-  \end{bmatrix}\mathbf{x} + \begin{bmatrix}
+\end{bmatrix}\mathbf{x}_{t-\Delta t} + \begin{bmatrix}
   \todo{?} \\
   \todo{?}
-  \end{bmatrix}\mathbf{u}
+  \end{bmatrix}\mathbf{u}_t
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,17 +64,17 @@
 \subsubsection{Measurement Function}
 
 \begin{equation}
-  h(\mathbf{\bar x}) = \begin{bmatrix}
+  h(\mathbf{\bar x}_t) = \begin{bmatrix}
   \todo{?} & \todo{?}
-  \end{bmatrix}\mathbf{\bar x}
+  \end{bmatrix}\mathbf{\bar x}_t
 \end{equation}
 
 \subsubsection{Measurement Covariance Matrix}
 
-Populate the measurement covariance matrix $\mathbf{R}$ with a reasonable value for the variance $\sigma^2_r$ of the range reading $r$.
+Populate the measurement covariance matrix $\mathbf{R}_t$ with a reasonable value for the variance $\sigma^2_r$ of the range reading $r$.
 
 \begin{equation}
-  \mathbf{R} = \begin{bmatrix}
+  \mathbf{R}_t = \begin{bmatrix}
   \todo{?}
   \end{bmatrix}
 \end{equation}

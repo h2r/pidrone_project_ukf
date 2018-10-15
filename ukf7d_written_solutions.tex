@@ -21,7 +21,7 @@
 \subsection{State Vector}
 
 \begin{equation}
-\mathbf{x} = \begin{bmatrix}
+\mathbf{x}_t = \begin{bmatrix}
 x \\
 y \\
 z \\
@@ -39,19 +39,19 @@ z \\
 We define a control input $\mathbf{u}$ populated by linear accelerations from the IMU:
 
 \begin{equation}
-\mathbf{u} = \begin{bmatrix}
+\mathbf{u}_t = \begin{bmatrix}
 \ddot x^b \\
 \ddot y^b \\
 \ddot z^b
 \end{bmatrix}
 \end{equation}
 
-The linear accelerations are in the drone's body frame, so we need to rotate these vectors into the global frame based on the yaw variable that we are tracking (we assume 0 degrees pitch and roll in this model). This transformation will occur in the state transition function.
+The linear accelerations are in the drone's body frame, so we need to rotate these vectors into the global frame based on the yaw variable that we are tracking and the roll and pitch values from the IMU as well. This transformation will occur in the state transition function.
 
 \subsubsection{State Transition Function}
 
 \begin{equation}
-  g(\mathbf{x}, \mathbf{u}, \Delta t) = \todo{?}
+  g(\mathbf{x}_{t-\Delta t}, \mathbf{u}_t, \Delta t) = \todo{?}
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,29 +73,13 @@ y \\
 \subsubsection{Measurement Function}
 
 \begin{equation}
-  h(\mathbf{\bar x}) = \todo{?}
+  h(\mathbf{\bar x}_t) = \todo{?}
 \end{equation}
 
 \subsubsection{Measurement Covariance Matrix}
 
 \begin{equation}
-  \mathbf{R} = \todo{?}
+  \mathbf{R}_t = \todo{?}
 \end{equation}
-
-\noindent \todo{Your histogram image here}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Implementation}
-
-\subsection{Initializing $\dot z$}
-\todo{Your answer here}
-
-\subsection{Consecutive Predictions vs. Updates}
-\todo{Your answer here}
-
-\subsection{Comparison of UKF to EMA Filter}
-\todo{Your answer and Height Readings chart image here}
-
 
 \end{document}
